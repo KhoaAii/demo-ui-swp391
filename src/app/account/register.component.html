@@ -1,0 +1,174 @@
+﻿<!-- <div class="card">
+    <h4 class="card-header">Register</h4>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label class="form-label">First Name</label>
+                <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Last Name</label>
+                <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Username is required</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+            </div>
+            <div>
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                    Register
+                </button>
+                <a routerLink="../login" class="btn btn-link">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div> -->
+<section class="vh-100">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-white text-black-50" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+
+              <div class="mb-md-5 mt-md-4 pb-5">
+
+                <h2 class="fw-bold mb-2 text-uppercase">Đăng ký</h2>
+                <div class="form-outline form-white mb-1">
+                <input type="text" id="firstName" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['firstName'].errors }" />
+                <label class="form-label" for="firstName">Họ và Tên</label>
+                <div *ngIf="submitted && f['firstName'].errors" class="invalid-feedback">
+                    <div *ngIf="f['firstName'].errors['required']">Họ và Tên is required</div>
+                </div>
+                </div>
+                <div class="form-outline form-white mb-4">
+                  <input id="typeEmailX" type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" class="form-control form-control-lg" />
+                  <label class="form-label" for="typeEmailX">Tên Đăng nhập</label>
+                  <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+                    <div *ngIf="f['username'].errors['required']">Username is required</div>
+                  </div>
+                </div>
+
+                <div class="form-outline form-white mb-1">
+                  <input type="password" id="typePasswordX" class="form-control form-control-lg" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"/>
+                  <label class="form-label" for="typePasswordX">Mật khẩu</label>
+                  <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                  <div *ngIf="f['password'].errors['required']">Password is required</div>
+                </div>
+                </div>
+                <div class="form-outline form-white mb-1">
+                  <input type="password" id="reWritePassWord" formControlName="reWritePassWord" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['reWritePassWord'].errors }" />
+                  <label class="form-label" for="reWritePassWord">Nhập lại mật khẩu</label>
+                  <div *ngIf="submitted && f['reWritePassWord'].errors" class="invalid-feedback">
+                    <div *ngIf="f['reWritePassWord'].errors['required']">re write Password is required</div>
+                  </div>
+                </div>
+<!--                <div class="form-outline form-white mb-1">-->
+<!--                  <input type="email" id="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />-->
+<!--                  <label class="form-label" for="email">Email</label>-->
+<!--                  <di *ngIf="submitted && f.firstName.errors" class="invalid-feedback">-->
+<!--                    <div *ngIf="f.email.errors.required">Email is required</div>-->
+<!--                    <div *ngIf="f.email.errors.pattern">Email sai format</div>-->
+<!--                  </di>-->
+<!--                </div>-->
+                <div *ngIf="isError" style="color: red">
+                  <div>Có lỗi khi đăng ký:</div>
+                  <div *ngFor="let item of errors">
+                    <div>--: {{item}}</div>
+                  </div>
+                </div>
+<!--                <p class="small mb-5 pb-lg-0"><a class="text-white-50" href="#!">Quên Mật khẩu</a></p>-->
+                <button class="btn btn-outline-light btn-lg px-5" type="submit">Đăng ký</button>
+              </div>
+
+              <div>
+                <p class="mb-0">Chuyển tới trang đăng nhập<a routerLink="/login"
+                                                             routerLinkActive="active"
+                                                             ariaCurrentWhenActive="page" class="text-black-50 fw-bold">Đăng nhập</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+  </section>
+
+
+<!--  <div class="modal__overlay">-->
+
+<!--  </div>-->
+<!--  <div class="modal__body">-->
+
+<!--    <div class="auth-form">-->
+<!--      <div class="auth-form__container">-->
+<!--        <div class="auth-form__header">-->
+<!--          <h3 class="auth-form__heading">ĐĂNG KÝ</h3>-->
+<!--          <span class="auth-form__switch-btn">ĐĂNG NHẬP</span>-->
+<!--        </div>-->
+
+<!--        <div class="auth-form__form">-->
+<!--          <div class="auth-form__group">-->
+<!--            <input type="text" class="auth-form_input" placeholder="Họ và tên">-->
+<!--          </div>-->
+<!--          <div class="auth-form__group">-->
+<!--            <input type="text" class="auth-form_input" placeholder="Email của bạn">-->
+<!--          </div>-->
+<!--          <div class="auth-form__group">-->
+<!--            <input type="password" class="auth-form_input" placeholder="Nhập Mật Khẩu">-->
+<!--          </div>-->
+<!--          <div class="auth-form__group">-->
+<!--            <input type="password" class="auth-form_input" placeholder="Nhập Lại Mật Khẩu">-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="auth-form__aside">-->
+<!--          <p class="auth-form__policy-text">-->
+<!--            Khi bạn đăng ký bạn sẽ chấp nhận với FPT Social về-->
+<!--            <a href="" class="auth-form__text-link">Điều khoản dịch vụ</a> &-->
+<!--            <a href="" class="auth-form__text-link">Chính sách bảo mật</a>-->
+<!--          </p>-->
+<!--        </div>-->
+
+<!--        <div class="auth-form__controls">-->
+
+<!--          <button class="btn auth-form__controls-btn-back">TRỞ LẠI</button>-->
+
+<!--          <button class="btn btn&#45;&#45;primary btn&#45;&#45;dis">ĐĂNG KÝ</button>-->
+<!--        </div>-->
+
+<!--        <div class="auth-form__socials">-->
+<!--          <a href="" class="auth-form__socials-fb btn btnsize-s btn&#45;&#45;witch-icon">-->
+<!--            <i class="auth-form__socials-icon fa-brands fa-facebook"></i>-->
+<!--            <span class="auth-form__socials-title">Kết nối với FaceBook</span>-->
+<!--          </a>-->
+<!--          <a href="" class=" btn btnsize-s btn&#45;&#45;witch-icon">-->
+<!--            <i class="auth-form__socials-icon fa-brands fa-google"></i>-->
+<!--            <span class="auth-form__socials-title">Kết nối với Google</span>-->
+<!--          </a>-->
+<!--        </div>-->
+
+<!--      </div>-->
+
+<!--    </div>-->
+
+<!--  </div>-->
